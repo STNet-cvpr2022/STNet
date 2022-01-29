@@ -28,13 +28,6 @@ class SpatialGroupEnhance(nn.Module):
         # x = x.view(b * self.groups, -1, h, w) # (b*32, c', h, w)
         xn = x * self.avg_pool(x)
         xn = xn.mean(dim=1, keepdim=True) # (b*32, 1, h, w)
-        # t = xn.view(b, -1)
-        # t = t - t.mean(dim=1, keepdim=True)
-        # std = t.std(dim=1, keepdim=True) + 1e-5
-        # t = t / std
-        # t = t.view(b, 1, h, w)
-        # t = t * self.weight + self.bias
-        # t = t.view(b, 1, h, w)
         entro = torch.mean(xn, dim=0).squeeze()
         h,w = entro.size()
         entro = entro.view(-1)
@@ -47,7 +40,6 @@ class SpatialGroupEnhance(nn.Module):
         entro_final = entro_final / torch.count_nonzero(his)
         x = self.sig(xn)
         x = torch.mean(x)
-        # print('x.........', x )
         return x + entro_final*10
 
 class ActFun(torch.autograd.Function):
