@@ -113,11 +113,7 @@ class PipelineTracker(object):
                 image_pos.append(
                     cv2.imread(img_file.split('.')[0].replace('img_120_split', 'img_120_5_split') + '_{}.jpg'.format(i),
                                cv2.IMREAD_COLOR))
-                # image_pos.append(
-                #     cv2.imread(img_file.split('.')[0].replace('img_120_split', 'img_120_5_split').replace('/data/zjq',
-                #                                                                                           '/home/iccd/data') + '_{}.jpg'.format(
-                #         i),
-                #                cv2.IMREAD_COLOR))
+ 
                 image_neg.append(cv2.imread(
                     img_files_neg[f].split('.')[0].replace('img_120_split', 'img_120_5_split') + '_{}.jpg'.format(i),
                     cv2.IMREAD_COLOR))
