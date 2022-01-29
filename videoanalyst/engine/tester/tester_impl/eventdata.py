@@ -29,7 +29,7 @@ class EVENTTester(TesterBase):
     """
     extra_hyper_params = dict(
         device_num=1,
-        data_root="/data/zjq/img_120_split",
+        data_root="/data/img_120_split",
         subsets=["val"],  # (val|test)
     )
 
