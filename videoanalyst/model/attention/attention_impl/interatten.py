@@ -60,9 +60,7 @@ class Spa_Module(nn.Module):
     def __init__(self, in_dim):
         super(Spa_Module, self).__init__()
         self.chanel_in = in_dim
-        # self.query_conv = nn.Conv2d(in_channels=in_dim, out_channels=in_dim//8, kernel_size=1)
-        # self.key_conv = nn.Conv2d(in_channels=in_dim, out_channels=in_dim//8, kernel_size=1)
-        # self.value_conv = nn.Conv2d(in_channels=in_dim, out_channels=in_dim, kernel_size=1)
+ 
         self.gamma = nn.Parameter(torch.zeros(1))
         self.softmax = nn.Softmax(dim=-1)
 
@@ -75,8 +73,7 @@ class Spa_Module(nn.Module):
                 attention: B X (HxW) X (HxW)
         """
         m_batchsize, C, height, width = x.size()
-        # proj_query = self.query_conv(x).view(m_batchsize, -1, width*height).permute(0, 2, 1)
-        # proj_key = self.key_conv(x).view(m_batchsize, -1, width*height)
+ 
         proj_query = x.view(m_batchsize, -1, width * height).permute(0, 2, 1)
         proj_key = x.view(m_batchsize, -1, width * height)
         energy = torch.bmm(proj_query, proj_key)
@@ -140,10 +137,6 @@ class Interatten(ModuleBase):
 
     def forward(self, tem_fea, spa_fea):
         tem_fea =  self.tem_attention(tem_fea)
-        # spa_fea_c = self.spa_attention(spa_fea)
-        # out = torch.cat([tem_fea_c, spa_fea_c, tem_fea, spa_fea], dim=1)
-        # out = self.conv_cat(out)
-        # out = out + tem_fea_c + spa_fea_c
         spa_fea = self.inter_attention(tem_fea, spa_fea)
         spa_fea = self.spa_attention(spa_fea)
         return spa_fea
