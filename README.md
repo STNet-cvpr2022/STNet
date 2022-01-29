@@ -17,6 +17,6 @@ The code is built on Siamfcpp (PyTorch) and tested on Ubuntu 18.04 environment w
 
 2. Download the [pretrained model](https://drive.google.com/file/d/1xD-d24TRoMHRAQKIxE7CxMhI2UffSiUG/view?usp=sharing), and put it into ./snapshots/stnet.
 
-3. Change your own data path in videoanalyst/engine/tester/tester_impl/eventdata.py, change the name of  _pretrain_model_path_ in experiments/test/fe240/fe240.yaml.
+3. Change your own data path in videoanalyst/engine/tester/tester_impl/eventdata.py, change  _pretrain_model_path_ in experiments/test/fe240/fe240.yaml.
 
 4. run ``` python main/test.py --config experiments/test/fe240/fe240.yaml ``` the predicted bbox will be saved in logs/EVENT-Benchmark/. 
