@@ -100,10 +100,6 @@ class SiamTrack(ModuleBase):
         tem_fea_z, spa_fea_z, _ = self.basemodel(target_img_pos, target_img_neg, snn_state_first, trans_z_sig, trans_z_lowres, first_seq=True)
         tem_fea_x, spa_fea_x, _ = self.basemodel(search_img_pos, search_img_neg, snn_state, trans_x_sig, trans_x_lowers, first_seq=False)
 
-        # f_z, _ = self.basemodel(target_img_pos, target_img_neg, snn_state_first, trans_z_sig,
-        #                                          trans_z_lowres, first_seq=True)
-        # f_x, _ = self.basemodel(search_img_pos, search_img_neg, snn_state, trans_x_sig, trans_x_lowers,
-        #                                          first_seq=False)
         f_z = self.atten(tem_fea_z, spa_fea_z)
         f_x = self.atten(tem_fea_x, spa_fea_x)
 
@@ -173,13 +169,7 @@ class SiamTrack(ModuleBase):
                 # extract feature with trt model
                 out_list = self.trt_fea_model(target_img_pos)
             else:
-                # backbone feature
-                # trans_z_sig, trans_z_lowres = None, None
-                # tem_pos = [target_img_pos[0] + target_img_pos[1], target_img_pos[2] + target_img_pos[3], target_img_pos[4] + target_img_pos[5], \
-                #            target_img_pos[6] + target_img_pos[7], target_img_pos[8] + target_img_pos[9]]
-                # tem_neg = [target_img_neg[0] + target_img_neg[1], target_img_neg[2] + target_img_neg[3],
-                #            target_img_neg[4] + target_img_neg[5], \
-                #            target_img_neg[6] + target_img_neg[7], target_img_neg[8] + target_img_neg[9]]
+
                 trans_z_sig, trans_z_lowres = self.transfor(target_img_pos, target_img_neg)
                 # trans_z_sig, trans_z_lowres = self.transfor(tem_pos, tem_neg)
                 tem_fea_z, spa_fea_z, _ = self.basemodel(target_img_pos, target_img_neg, snn_state_first, trans_z_sig, trans_z_lowres, first_seq=True)
@@ -200,8 +190,7 @@ class SiamTrack(ModuleBase):
             # head
             return [c_x, r_x]
         # [Broken] used for template feature extraction (trt mode)
-        #   currently broken due to following issue of "torch2trt" package
-        #   c.f. https://github.com/NVIDIA-AI-IOT/torch2trt/issues/251
+
         elif phase == "freeze_track_head":
             c_out, r_out = args
             # head
@@ -215,23 +204,9 @@ class SiamTrack(ModuleBase):
                     c_x, r_x = self.trt_track_model(search_img_pos)
                 else:
                     # backbone feature
-                    # time1 = time.time()
                     trans_x_sig, trans_x_lowers = self.transfor(search_img_pos, search_img_neg)
                     tem_fea_x, spa_fea_x, snn_state = self.basemodel(search_img_pos, search_img_neg, snn_state, trans_x_sig, trans_x_lowers, first_seq=False)
-                    # img_spa_v = tem_fea_x[0][1,:,:].cpu().detach().numpy()
-                    # ax = sns.heatmap(img_spa_v)
-                    # ax = ax.plot()
-                    # imgplot = sns.pairplot(ax)
-                    # fig = plt.figure()
-                    # fig = ax.get_figure()
-                    # fig.savefig('/home/iccd/ax.jpg')
-                    # ax = np.expand_dims(ax, axis=0)
-                    # cv2.imwrite( '/home/iccd/ax.jpg', ax)
                     f_x = self.atten(tem_fea_x, spa_fea_x)
-
-                    # time2 = time.time() - time1
-                    # print(time2)
-                    # feature adjustment
                     c_x = self.c_x(f_x)
                     r_x = self.r_x(f_x)
             elif len(args) == 4+2:
