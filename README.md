@@ -1,5 +1,5 @@
 # STNet
-The code is based on [SiamFC++](https://github.com/MegviiDetection/video_analyst) and tested on Ubuntu 18.04 with PyTorch xxx.
+The code is based on [SiamFC++](https://github.com/MegviiDetection/video_analyst) and tested on Ubuntu 20.04 with PyTorch 1.8.0.
 
 ##  Test on FE240hz Dataset
 1. Download our preprocessed [test dataset](https://drive.google.com/drive/folders/1pNY8kahrof9l9zCw7TtXY4RhvJ4GGx37?usp=sharing) of FE240hz. (The whole FE240hz dataset can be downloaded [here](https://zhangjiqing.com/publication/iccv21_fe108_tracking/)).
