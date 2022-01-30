@@ -12,9 +12,9 @@ The code is based on [SiamFC++](https://github.com/MegviiDetection/video_analyst
     - The predicted  bounding box format:  An N×4 matrix with each line representing object location [xmin, ymin, width, height] in one event frame.
 
 ##  Test on VisEvent dataset
-1. Download our preprocessing [test dataset](https://drive.google.com/drive/folders/1nrHaJysllPOq0VxA1p-Q-4WOr6IVrqO-?usp=sharing) of VisEvent. (you can download the whole VisEvent dataset from [here](https://github.com/wangxiao5791509/VisEvent_SOT_Benchmark)).
+1. Download our preprocessing [test dataset](https://drive.google.com/drive/folders/1nrHaJysllPOq0VxA1p-Q-4WOr6IVrqO-?usp=sharing) of VisEvent. (The whole FE240hz dataset can be downloaded [here](https://github.com/wangxiao5791509/VisEvent_SOT_Benchmark)).
 
-2. Download the [pretrained model](https://drive.google.com/file/d/17eA45v3XH14qkE5HrAfGc4fcVMUWIEYD/view?usp=sharing), and put it into ./snapshots/stnet.
+2. Download the [pretrained model](https://drive.google.com/file/d/17eA45v3XH14qkE5HrAfGc4fcVMUWIEYD/view?usp=sharing) and put it into ./snapshots/stnet.
 
 3. Change dataset path at line 32 in videoanalyst/engine/tester/tester_impl/eventdata.py, ```data_root="/your_data_path/img_120_split"```
 
