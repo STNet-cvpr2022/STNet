@@ -15,7 +15,7 @@ The code is built on Siamfcpp (PyTorch) and tested on Ubuntu 18.04 environment w
 ##  Test on VisEvent dataset
 1. Download our preprocessing [test dataset](https://drive.google.com/drive/folders/1nrHaJysllPOq0VxA1p-Q-4WOr6IVrqO-?usp=sharing) of VisEvent. (you can download the whole VisEvent dataset from [here](https://github.com/wangxiao5791509/VisEvent_SOT_Benchmark)).
 
-2. Download the [pretrained model](https://drive.google.com/file/d/1xD-d24TRoMHRAQKIxE7CxMhI2UffSiUG/view?usp=sharing), and put it into ./snapshots/stnet.
+2. Download the [pretrained model](https://drive.google.com/file/d/17eA45v3XH14qkE5HrAfGc4fcVMUWIEYD/view?usp=sharing), and put it into ./snapshots/stnet.
 
 3. Change your own data path in videoanalyst/engine/tester/tester_impl/eventdata.py, change  _pretrain_model_path_ in experiments/test/fe240/fe240.yaml.
 
