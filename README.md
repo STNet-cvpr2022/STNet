@@ -13,7 +13,7 @@ The code is built on Siamfcpp (PyTorch) and tested on Ubuntu 18.04 environment w
 4. run ``` python main/test.py --config experiments/test/fe240/fe240.yaml ``` the predicted bbox will be saved in logs/EVENT-Benchmark/. 
 
 ##  Test on VisEvent dataset
-1. Download our preprocessing test dataset of VisEvent. (you can download the whole VisEvent dataset from [here](https://github.com/wangxiao5791509/VisEvent_SOT_Benchmark)).
+1. Download our preprocessing [test dataset](https://drive.google.com/drive/folders/1nrHaJysllPOq0VxA1p-Q-4WOr6IVrqO-?usp=sharing) of VisEvent. (you can download the whole VisEvent dataset from [here](https://github.com/wangxiao5791509/VisEvent_SOT_Benchmark)).
 
 2. Download the [pretrained model](https://drive.google.com/file/d/1xD-d24TRoMHRAQKIxE7CxMhI2UffSiUG/view?usp=sharing), and put it into ./snapshots/stnet.
 
